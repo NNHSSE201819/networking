@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -37,18 +39,32 @@ public class SimpleService implements Runnable
             return;
         }
 
-        String command= in.next(); //need to do something with command to open file
+        String command= in.next();
+
         if (command.toUpperCase().contains("GET"))
         {
-            String input;
-            while(in.hasNext())
+            command= command.substring(command.indexOf("T"));
+            try(Scanner s= new Scanner(new File(command)))
             {
+                out.print(command+" OK\n");
+                out.flush();
 
+                while(s.hasNext())
+                {
+                    out.print(s.nextLine());
+                }
+                out.flush();
+            }
+            catch(FileNotFoundException e)
+            {
+                out.print("404 Not Found");
+                out.flush();
             }
         }
         else
         {
-            System.out.println("Invalid Command");
+            out.print("Invalid Command");
+            out.flush();
         }
 
 
