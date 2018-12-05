@@ -11,15 +11,15 @@ public class Bank
         }
     }
 
-    public void deposit(int accouuntNumber, double amount)
+    public void deposit(int accountNumber, double amount)
     {
         BankAccount account = accounts[accountNumber];
         account.deposit(amount);
     }
-    public void widthdraw(int accountNumber, double amount)
+    public void withdraw(int accountNumber, double amount)
     {
         BankAccount account = accounts[accountNumber];
-        account.widthdraw(amount);
+        account.withdraw(amount);
     }
 
     public double getBalance(int accountNumber)

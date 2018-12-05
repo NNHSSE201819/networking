@@ -29,18 +29,18 @@ public class BankService implements Runnable
         }
         catch (IOException exceptiion)
         {
-            Exception.printStackTrace();
+            exceptiion.printStackTrace();
         }
 
-        public void doService() throws IOException
+    }
+    public void doService() throws IOException
+    {
+        while(true)
         {
-            while(true)
-            {
-                if (!in.hasNext()) {return;}
-                String command = in.next();
-                if (command.equals("QUIT")) {return;}
-                else {executeCommand(command);}
-            }
+            if (!in.hasNext()) {return;}
+            String command = in.next();
+            if (command.equals("QUIT")) {return;}
+            else {executeCommand(command);}
         }
     }
 
@@ -52,12 +52,12 @@ public class BankService implements Runnable
             double amount = in.nextDouble();
             bank.deposit(account, amount);
         }
-        else if (command.equals("WITHDRAW"));
+        else if (command.equals("WITHDRAW"))
         {
-            double ammount = in.nextDouble();
-            bank.widthdraw(account, amount);
+            double amount = in.nextDouble();
+            bank.withdraw(account, amount);
         }
-        else if (!command.equals("BALANCE"));
+        else if (!command.equals("BALANCE"))
         {
             out.println("Invalid command");
             out.flush();
