@@ -12,6 +12,8 @@ public class BankClient
         final int SBAP_PORT = 8888;
         try (Socket s = new Socket("localhost", SBAP_PORT))
         {
+            System.out.println("Connected");
+
             InputStream instream = s.getInputStream();
             OutputStream  outstream = s.getOutputStream();
             Scanner in = new Scanner(instream);
