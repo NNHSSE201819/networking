@@ -9,11 +9,13 @@ public class SimpleServer
         final int PORT=8080;
 
         ServerSocket server= new ServerSocket(PORT);
+        System.out.println("Server socket created");
 
-        try(Socket s= server.accept())
+        while(true)
         {
-            while(true)
+            try(Socket s= server.accept())
             {
+                System.out.println("accepted connection");
                 SimpleService service= new SimpleService(s);
                 Thread t= new Thread(service);
                 t.start();

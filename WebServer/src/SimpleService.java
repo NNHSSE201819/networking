@@ -34,16 +34,24 @@ public class SimpleService implements Runnable
 
     public void doService() throws IOException
     {
+        System.out.println("doservice called");
         if(!this.in.hasNext())
         {
             return;
         }
 
         String command= in.next();
+        System.out.println(command);
 
-        if (command.toUpperCase().contains("GET"))
+        if (command.equals("GET"))
         {
-            command= command.substring(command.indexOf("T"));
+            if(!this.in.hasNext())
+            {
+                return;
+            }
+
+            command= in.next();
+            System.out.println(command);
             try(Scanner s= new Scanner(new File(command)))
             {
                 out.print(command+" OK\n");
@@ -52,8 +60,9 @@ public class SimpleService implements Runnable
                 while(s.hasNext())
                 {
                     out.print(s.nextLine());
+                    out.flush();
                 }
-                out.flush();
+
             }
             catch(FileNotFoundException e)
             {
