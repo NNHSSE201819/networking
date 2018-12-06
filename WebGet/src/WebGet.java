@@ -12,7 +12,8 @@ import java.util.Scanner;
  */
 public class WebGet
 {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException
+    {
         // Get command-line arguments
 
         String host;
@@ -25,8 +26,8 @@ public class WebGet
         }
         else
         {
-            System.out.println("Getting / from hosrtmann.com");
-            host = "horstmann.com";
+            System.out.println("Getting / from horstmann.com");
+            host = "naver.com";
             resource = "/";
         }
 
@@ -46,17 +47,20 @@ public class WebGet
 
             // Send command
 
-            String command = "GET " + resource + "HTTP/1.1\n"
+            String command = "HEAD " + resource + " HTTP/1.1\n"
                     +"Host: " + host + "\n\n";
             out.print(command);
             out.flush();
 
             // Read server response
-
-            while(in.hasNextLine())
+            boolean stop = false;
+            while(in.hasNextLine() && stop == false)
             {
                 String input = in.nextLine();
                 System.out.println(input);
+
+
+
             }
         }
 
