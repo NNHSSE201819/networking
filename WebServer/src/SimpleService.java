@@ -13,6 +13,7 @@ public class SimpleService implements Runnable
 
     public SimpleService(Socket s)
     {
+        System.out.println("constructor");
         this.socket=s;
 
     }
@@ -21,6 +22,7 @@ public class SimpleService implements Runnable
     {
         try
         {
+            System.out.println("run");
             this.in= new Scanner(this.socket.getInputStream());
             this.out= new PrintWriter(this.socket.getOutputStream());
             this.doService();
@@ -57,7 +59,7 @@ public class SimpleService implements Runnable
                 out.print(command+" OK\n");
                 out.flush();
 
-                while(s.hasNext())
+                while(s.hasNextLine())
                 {
                     out.print(s.nextLine());
                     out.flush();
