@@ -13,13 +13,12 @@ public class SimpleServer
 
         while(true)
         {
-            try(Socket s= server.accept())
-            {
-                System.out.println("accepted connection");
-                SimpleService service= new SimpleService(s);
-                Thread t= new Thread(service);
-                t.start();
-            }
+            Socket s= server.accept();
+            System.out.println("accepted connection");
+            SimpleService service= new SimpleService(s);
+            Thread t= new Thread(service);
+            t.start();
+
         }
 
 

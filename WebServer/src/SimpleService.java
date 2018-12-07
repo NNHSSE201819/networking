@@ -53,10 +53,11 @@ public class SimpleService implements Runnable
             }
 
             command= in.next();
+            command= command.substring(command.indexOf("/")+1);
             System.out.println(command);
             try(Scanner s= new Scanner(new File(command)))
             {
-                out.print(command+" OK\n");
+                out.print("HTTP/1.1 200 OK\n");
                 out.flush();
 
                 while(s.hasNextLine())
@@ -77,8 +78,6 @@ public class SimpleService implements Runnable
             out.print("Invalid Command");
             out.flush();
         }
-
-
 
 
     }
