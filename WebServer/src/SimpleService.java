@@ -57,7 +57,9 @@ public class SimpleService implements Runnable
             System.out.println("Parsed command "+command);
             try(Scanner s= new Scanner(new File(command)))
             {
+
                 out.print("HTTP/1.1 200 OK\n");
+                System.out.println("HTTP/1.1 200 OK\n");
                 out.flush();
 
                 while(s.hasNextLine())
@@ -72,12 +74,14 @@ public class SimpleService implements Runnable
             catch(FileNotFoundException e)
             {
                 out.print("404 Not Found");
+                System.out.println("404 Not Found");
                 out.flush();
             }
         }
         else
         {
             out.print("Invalid Command");
+            System.out.println("Invalid Command");
             out.flush();
         }
 
