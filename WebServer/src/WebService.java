@@ -18,6 +18,7 @@ public class WebService implements Runnable
 
     public void run()
     {
+
         try
         {
             in = new Scanner(s.getInputStream());
@@ -32,6 +33,7 @@ public class WebService implements Runnable
 
     public void doService() throws IOException
     {
+
         while(true)
         {
             if(!in.hasNext())
@@ -54,7 +56,9 @@ public class WebService implements Runnable
 
         if(command.equals("GET"))
         {
-            out.print(command);
+            System.out.println("DONE");
+            System.out.println("HTTP/1.1 200 OK");
+            out.print("HTTP/1.1 200 OK");
             out.flush();
         }
 

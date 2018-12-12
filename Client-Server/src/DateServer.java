@@ -1,10 +1,9 @@
-
 import java.io.IOException;
 import java.net.Socket;
 import java.net.ServerSocket;
+import java.util.Date;
 
-
-public class WebServer
+public class DateServer
 {
     public static void main(String[] args) throws IOException
     {
@@ -17,12 +16,8 @@ public class WebServer
         {
             Socket s = server.accept();
 
-            System.out.println("Client connected.");
-            WebService service = new WebService(s);
-            Thread t = new Thread(service);
-            t.start();
-
-
+            System.out.println(new Date().toString());
+            server.close();
         }
 
     }
