@@ -2,7 +2,7 @@
 import java.io.IOException;
 import java.net.Socket;
 import java.net.ServerSocket;
-
+import java.util.Date;
 
 public class WebServer
 {
@@ -20,7 +20,10 @@ public class WebServer
             System.out.println("Client connected.");
             WebService service = new WebService(s);
             Thread t = new Thread(service);
+            Date d = new Date();
+            System.out.println(d.toString());
             t.start();
+
 
 
         }

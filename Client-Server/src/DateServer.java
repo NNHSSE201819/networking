@@ -15,9 +15,11 @@ public class DateServer
         while(true)
         {
             Socket s = server.accept();
+            System.out.println("Client connected");
+            DateService service = new DateService(s);
+            Thread t = new Thread(service);
+            t.start();
 
-            System.out.println(new Date().toString());
-            server.close();
         }
 
     }

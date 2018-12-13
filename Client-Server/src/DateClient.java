@@ -13,8 +13,15 @@ public class DateClient {
         {
             InputStream instream = s.getInputStream();
             OutputStream outstream = s.getOutputStream();
+
             Scanner in = new Scanner(instream);
             PrintWriter out = new PrintWriter(outstream);
+
+            String command = "GET / HTTP/1.1\nHost: naver.com";
+            System.out.print("GET: " + command);
+            out.print(command);
+            out.flush();
+
 
 
         }
