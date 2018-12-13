@@ -16,6 +16,7 @@ public class ChatService implements Runnable
     {
         this.s=socket;
         this.connections=connections;
+        this.clientName="anonymous";
     }
 
 
@@ -49,7 +50,6 @@ public class ChatService implements Runnable
 
             if(command.equals("LOGOUT"))
             {
-                this.connections.remove(this.s);
                 return;
             }
 
@@ -62,15 +62,7 @@ public class ChatService implements Runnable
     {
         if(command.equals("CHAT"))
         {
-            try
-            {
-                this.chat();
-            }
-            catch(IOException e)
-            {
-                this.out.print("Error sending message to other clients");
-                this.out.flush();
-            }
+            this.chat();
         }
         else if(command.equals("LOGIN"))
         {
@@ -92,7 +84,7 @@ public class ChatService implements Runnable
         }
     }
 
-    public void chat() throws IOException
+    public void chat()
     {
         PrintWriter currentOut;
         String message="";
@@ -104,15 +96,20 @@ public class ChatService implements Runnable
 
         for(int i=0; i<this.connections.size(); i++)
         {
-            if(this.connections.get(i).isClosed())
+            if(!this.connections.get(i).isClosed())
             {
-                this.connections.remove(i);
-            }
-            else
-            {
-                currentOut= new PrintWriter(this.connections.get(i).getOutputStream());
-                currentOut.print(clientName+": "+message);
-                currentOut.flush();
+                try
+                {
+                    currentOut= new PrintWriter(this.connections.get(i).getOutputStream());
+                    currentOut.print(clientName+": "+message);
+                    currentOut.flush();
+                }
+                catch( IOException e)
+                {
+                    this.out.print("Problem sending message to another user");
+                    this.out.flush();
+                }
+
             }
         }
 
