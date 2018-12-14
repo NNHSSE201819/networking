@@ -19,48 +19,24 @@ public class ChatClient
             PrintWriter out = new PrintWriter(outstream);
             String command;
             String login;
-            String chat;
+            String chat="";
 
             Scanner scn = new Scanner(System.in);
 
 
             while(true)
             {
-
                 if(scn.hasNext())
                 {
                     command = scn.next();
+                    System.out.println("command in client"+command);
+
+                    command+=" "+scn.next();
                     out.print(command);
                     out.flush();
-                    if(command.equals("LOGIN"))
-                    {
-                        System.out.print("Please Enter your Username: ");
-                        login = scn.next();
-                        out.print(login);
-                        out.flush();
-
-                    }
-                    if(command.equals("LOGOUT"))
-                    {
-                        break;
-                    }
-                    if(command.equals("CHAT"))
-                    {
-                        System.out.println("Enter your message:");
-                        chat = scn.next();
-                        out.println(chat);
-                        out.flush();
-
-                    }
                 }
 
-                if (in.hasNext())
-                {
-                    System.out.println(in);
-
-                }
-
-
+                System.out.println(in.nextLine());
 
             }
 

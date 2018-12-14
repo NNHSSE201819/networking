@@ -27,11 +27,14 @@ public class ChatService implements Runnable
             this.in= new Scanner(this.s.getInputStream());
             this.out= new PrintWriter(this.s.getOutputStream());
 
+            System.out.println("Run works");
+            this.out.println("Run works");
             this.chatService();
+
         }
         catch(IOException e)
         {
-            //System.out.println("Socket Error");
+            System.out.println("Socket Error");
             this.out.println("Socket Error");
             this.out.flush();
         }
@@ -41,12 +44,11 @@ public class ChatService implements Runnable
     {
         while(true)
         {
-            if(!in.hasNext())
-            {
-                return;
-            }
-
             String command= in.next().toUpperCase();
+
+            System.out.println("Command received by service: "+command);
+            this.out.print("command recieved by service: "+command);
+            this.out.flush();
 
             if(command.equals("LOGOUT"))
             {
@@ -62,7 +64,14 @@ public class ChatService implements Runnable
     {
         if(command.equals("CHAT"))
         {
-            this.chat();
+            out.print("Enter your message: ");
+            out.flush();
+
+            if(this.in.hasNext())
+            {
+                this.chat();
+            }
+
         }
         else if(command.equals("LOGIN"))
         {
@@ -86,12 +95,16 @@ public class ChatService implements Runnable
 
     public void chat()
     {
+        System.out.println("in chat method");
+
+
+
         PrintWriter currentOut;
         String message="";
 
-        while(this.in.hasNextLine())
+        while(this.in.hasNext())
         {
-            message+=in.nextLine();
+            message+=in.next();
         }
 
         for(int i=0; i<this.connections.size(); i++)
