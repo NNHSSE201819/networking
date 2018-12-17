@@ -102,10 +102,9 @@ public class ChatService implements Runnable
         PrintWriter currentOut;
         String message="";
 
-        while(this.in.hasNext())
-        {
-            message+=in.next();
-        }
+        message=this.in.nextLine();
+
+        System.out.println(message);
 
         for(int i=0; i<this.connections.size(); i++)
         {
@@ -114,6 +113,7 @@ public class ChatService implements Runnable
                 try
                 {
                     currentOut= new PrintWriter(this.connections.get(i).getOutputStream());
+                    System.out.println(clientName+": "+message);
                     currentOut.print(clientName+": "+message);
                     currentOut.flush();
                 }

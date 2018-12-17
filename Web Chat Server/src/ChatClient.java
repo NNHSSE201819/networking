@@ -31,12 +31,19 @@ public class ChatClient
                     command = scn.next();
                     System.out.println("command in client"+command);
 
-                    command+=" "+scn.next();
+                    command+=" "+scn.next()+"\n";
                     out.print(command);
                     out.flush();
+                    System.out.println("flushed");
                 }
 
-                System.out.println(in.nextLine());
+                if(in.hasNext())
+                {
+                    String message= in.nextLine();
+                    System.out.println(message);
+                    System.out.println(in.nextLine());
+                }
+
 
             }
 
