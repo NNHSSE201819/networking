@@ -91,6 +91,13 @@ public class ChatService implements Runnable
         {
             this.clientName=this.in.next();
         }
+        System.out.println("Username: "+ this.clientName);
+
+        try {
+            s.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void chat()
@@ -124,6 +131,11 @@ public class ChatService implements Runnable
                 }
 
             }
+        }
+        try {
+            s.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }

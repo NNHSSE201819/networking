@@ -21,6 +21,7 @@ public class ChatServer
 
             Thread t= new Thread(new ChatService(s, connections));
             t.start();
+
         }
     }
 

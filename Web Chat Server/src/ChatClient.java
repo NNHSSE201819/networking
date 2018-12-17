@@ -29,7 +29,7 @@ public class ChatClient
                 if(scn.hasNext())
                 {
                     command = scn.next();
-                    System.out.println("command in client"+command);
+                    System.out.println("command in client "+command);
 
                     command+=" "+scn.next()+"\n";
                     out.print(command);
